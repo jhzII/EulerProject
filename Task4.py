@@ -29,8 +29,8 @@ def max_palindrome(n):
             j -= 1
             if i * j < max_p:
                 break
-        j = n - 1
         i -= 1
+        j = i
         if i * j < max_p:
             break
     return max_p
