@@ -10,15 +10,16 @@ def is_palindrome(number):
     return True
 
 
-def max_palindrome(n):
+def max_palindrome(n, *, include_index=False):
     """ Ищет максимальный палиндром при умножении чисел n разрядности.
 
-        Обход по матрице в обратном порядке,
-        вызов break, если нет шансов найти больше.
+        include_index - включает в результат множители палиндрома.
     """
 
-    n = int(math.pow(10, n))
     max_p = -1
+    max_p_i = max_p_j = -1
+
+    n = int(math.pow(10, n))
     i = j = n - 1
 
     while i >= n // 10 and i * j > max_p:
@@ -26,14 +27,14 @@ def max_palindrome(n):
             number = j * i
             if is_palindrome(number) and number > max_p:
                 max_p = number
+                max_p_i = i
+                max_p_j = j
             j -= 1
-            if i * j < max_p:
-                break
         i -= 1
         j = i
-        if i * j < max_p:
-            break
-    return max_p
+
+    return (max_p, max_p_i, max_p_j) if include_index else max_p
 
 
-print(max_palindrome(5))
+if __name__ == '__main__':
+    print(max_palindrome(3, include_index=True))
