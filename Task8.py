@@ -66,6 +66,9 @@ def max_multiply(n: int) -> int:
         current_arr.pop(0)
         current_arr.append(number_arr[i])
 
+        if 0 in current_arr:
+            continue
+
         dif_mn_max, dif_mn_cur = diff_arr(max_arr, current_arr)
         if reduce(mul, dif_mn_cur or [0]) > reduce(mul, dif_mn_max or [0]):
             max_arr = current_arr[:]
