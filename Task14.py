@@ -10,4 +10,18 @@
 # Какой начальный элемент меньше миллиона генерирует самую длинную последовательность?
 # Примечание: Следующие за первым элементы последовательности могут быть больше миллиона.
 
-pass
+if __name__ == '__main__':
+    max_count = 1
+    n_max_count = 1
+
+    for i in range(1, 1000000):
+        n = i
+        count = 1
+        while n != 1:
+            n = n / 2 if n % 2 == 0 else 3*n + 1
+            count += 1
+        if count > max_count:
+            max_count = count
+            n_max_count = i
+
+    print(n_max_count)
